@@ -9,9 +9,9 @@ package Week6;
 public class CountSubstrings {
 
     public static void main(String[] args) {
-        int result = new CountSubstrings().countSubstrings("abc");
+        int result = new CountSubstrings().countSubstrings("fdsklf");
         System.out.println(result);
-        assert result == 3;
+        assert result == 6;
     }
 
 
@@ -19,9 +19,9 @@ public class CountSubstrings {
         boolean[][] dp = new boolean[s.length()][s.length()];
         int result = 0;
         for (int i = 0; i < s.length(); i++) {
-            for (int j = 0; j <= i; j++) {
+            for (int j = i; j >= 0; j--) {
                 // 回文字符串的头和尾必定相等，去掉头尾后剩下的字符串也一定还是回文字符串
-                if (s.charAt(i) == s.charAt(j) && (j - i < 2 || dp[i+1][j-1])) {
+                if (s.charAt(i) == s.charAt(j) && (i - j < 2 || dp[i - 1][j + 1])) {
                     dp[i][j] = true;
                     result++;
                 }
